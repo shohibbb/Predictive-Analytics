@@ -43,7 +43,7 @@ Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:
 - Performance Index: Ukuran kinerja keseluruhan dari setiap siswa. Indeks prestasi mewakili prestasi akademik siswa dan telah dibulatkan ke bilangan bulat terdekat. Indeks ini berkisar antara 10 hingga 100, dengan nilai yang lebih tinggi menunjukkan kinerja yang lebih baik.
 
 Setiap variabel data memiliki distribusi yang cukup merata, tanpa menunjukkan adanya kesenjangan atau ketimpangan yang signifikan, sebagaimana ditunjukkan pada visualisasi di bawah ini.
-![Distribusi data numerik pada dataset](Asset\image1.png)
+![Distribusi data numerik pada dataset](Asset/image1.png)
 
 | No  | Column                           | Jumlah | Dtype   |
 | --- | -------------------------------- | ------ | ------- |

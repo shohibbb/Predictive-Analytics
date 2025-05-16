@@ -126,6 +126,6 @@ Selain menggunakan metrik evaluasi diatas untuk mengukur kinerja model sebagai m
 
 fungsi feature*importances* akan menampilkan nilai kepentingan masing-masing fitur pada dataset. disini kita lihat yang paling berpengaruh ke indeks performa adalah Previous Scores, kedua Hours Studied, dan terakhir sleep hours
 
-**---Ini adalah bagian akhir laporan---**
 Referensi
+
 [1] C. F. Djarwo, “Analisis faktor internal dan eksternal terhadap motivasi belajar kimia siswa SMA Kota Jayapura,” Jurnal Ilmiah IKIP Mataram, vol. 7, no. 1, pp. 1–7, 2020.

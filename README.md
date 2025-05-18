@@ -96,7 +96,8 @@ $$
 
 ### 3. R-squared ($R^2$ Score)
 
-$R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}$
+**R² = 1 - (Σ(yᵢ - ŷᵢ)²) / (Σ(yᵢ - ȳ)²)**
+
 
 - Mengukur seberapa besar variasi data aktual yang dapat dijelaskan oleh model.
 - Dengan rentang nilai menunjukan seberapa baik model memberikan prediksi secara keseluruhan

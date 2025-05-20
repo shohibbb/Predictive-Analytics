@@ -29,11 +29,11 @@ Menjelaskan tujuan dari pernyataan masalah:
 
 ## Data Understanding
 
-Data yang digunakan pada project ini adalah data terkait kebiasaan siswa yang bisa jadi berdampak pada kemampuan siswa, berasal dari kaggle dengan judul [Student Performance (Multiple Linear Regression)](https://www.kaggle.com/datasets/nikhil7280/student-performance-multiple-linear-regression) berisi 10.000 sampel dan Performance Index sebagai Target Datanya .
+Data yang digunakan pada project ini adalah data terkait kebiasaan siswa yang bisa jadi berdampak pada kemampuan siswa, berasal dari kaggle dengan judul [Student Performance (Multiple Linear Regression)](https://www.kaggle.com/datasets/nikhil7280/student-performance-multiple-linear-regression) berisi 10.000 sampel dan Performance Index sebagai Target Datanya.
 
 Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:
 
-### Variabel-variabel pada Restaurant UCI dataset adalah sebagai berikut:
+### Variabel-variabel pada Student Performance (Multiple Linear Regression) adalah sebagai berikut:
 
 - Hours Studied: Jumlah total jam yang dihabiskan untuk belajar oleh setiap siswa.
 - Previous Scores: Nilai yang diperoleh siswa dalam tes sebelumnya.
@@ -42,7 +42,7 @@ Selanjutnya uraikanlah seluruh variabel atau fitur pada data. Sebagai contoh:
 - Sample Question Papers Practiced: Jumlah contoh soal yang telah dikerjakan oleh siswa.
 - Performance Index: Ukuran kinerja keseluruhan dari setiap siswa. Indeks prestasi mewakili prestasi akademik siswa dan telah dibulatkan ke bilangan bulat terdekat. Indeks ini berkisar antara 10 hingga 100, dengan nilai yang lebih tinggi menunjukkan kinerja yang lebih baik.
 
-Setiap variabel data memiliki distribusi yang cukup merata, tanpa menunjukkan adanya kesenjangan atau ketimpangan yang signifikan, sebagaimana ditunjukkan pada visualisasi di bawah ini.
+Dari total 10000 instance data, tidak terdapat missing value maupun outlier, namun terdapat 127 data duplicate. Setiap variabel data memiliki distribusi yang cukup merata, tanpa menunjukkan adanya kesenjangan atau ketimpangan yang signifikan, sebagaimana ditunjukkan pada visualisasi di bawah ini.
 ![Distribusi data numerik pada dataset](Asset/image1.png)
 
 | No  | Column                           | Jumlah | Dtype   |
@@ -56,6 +56,7 @@ Setiap variabel data memiliki distribusi yang cukup merata, tanpa menunjukkan ad
 
 ## Data Preparation
 
+- Menghapus Duplicated value : sebegaimana yang telah disebutkan bahwa ada 127 data duplicate, penanganan yang dilakukan pada data duplikat tersebut adalah dihapus
 - Standarisasi: digunakan untuk menyamakan skala antar fitur dan mempercepat konvergensi model. Tindakan ini dilakukan untuk meningkatkan akurasi model dan memastikan peforma model yang konsisten.
 - Transformasi: Selanjutnya ada tranformasi data menggunakan label encoder untuk merubah data kategorikal yang diisi dengan nilai huruf contoh nya "yes" dan "no" menjadi angka yang setiap angka mewakilkan satu kategori. Proses ini harus diaplikasikan karena model machine learning hanya menerima input berupa angka.
 - Data Splitting: Bertujuan untuk membagi data dengan rasio tertentu yang mana sebagian akan digunakan untuk melatih/membangun model machine learning sedangkan sebagian yang lain akan digunakan untuk menguji model yang sudah dibangun.
@@ -65,12 +66,18 @@ Setiap variabel data memiliki distribusi yang cukup merata, tanpa menunjukkan ad
 Algortima yang digunakan untuk proyek ini adalah Random forest dan XGBoost. Pemilihan Algoritma ini berdasarkan beberapa aspek berikut :
 
 - Random Forest (RF)
+  Cara Kerja: Metode ini diperkenalkan sebagai pendekatan lanjutan untuk pohon keputusan. Metode ini didasarkan pada konsep pembelajaran ensemble, yang mengasumsikan bahwa menggabungkan beberapa model akan menghasilkan akurasi yang lebih baik daripada hanya mengandalkan satu model [2].
+  parameter: n_estimators, max_depth, min_samples_split, min_samples_leaf, max_features, bootstrap dan beberapa parameter lain seperti criterion, random_state, oob_score, dan n_jobs d
   (+) Robust terhadap overfitting karena RF terdiri dari banyak pohon keputusan dengan teknik bagging, menjadikannya cenderung lebih stabil.
   (-) Model besar dan lambat dibanding beberapa algoritma lain, karena terdiri dari banyak keputusan maka tentunya perlu komputasi yang lebih memakan waktu.
 
 - XGBoost
+  Cara Kerja: XGBoost adalah pengklasifikasi ensembel yang menggunakan konsep pohon keputusan untuk membagi data menjadi bagian-bagian yang lebih kecil dan membagi target [3].
+  parameter: n_estimators, learning_rate, max_depth, subsample, colsample_bytree, gamma dan beberapa parameter lain seperti reg_alpha, reg_lambda, min_child_weight, booster, dan objective.
   (+) Kinerja prediktif sangat tinggi, dibuktikan dengan banyaknya artikel yang membahas keunggulan algortima ini
   (-) Tidak optimal pada data yang tidak terstuktur, hal ini sudah umum diketahui bahwa model gradient ini sensitif pada outlier
+
+semua parameter dibiarkan dalam kondisi default dengan alasan penentuan parameter tanpa ada dasar bukan sesuatu tindakan yang bisa diterima dalam sebuah penelitian.
 
 dari kedua model diatas Xgbost menjadi model terbaik berdasarkan performanya yang diukur pada 3 metriks yaitu Mean Square Error, Mean Absolute Error, dan R-Square. Dari ketiga metrik tersebut XGboost unggul pada MSE, MAE dan R2
 
@@ -110,7 +117,7 @@ berikut tabel untuk menunjukan hasil dari setiap metrik
 | Random Forest | **0.931158** | 5.673413     | **0.749827** | 1.905679     | **0.997470** | 0.984756     |
 | XGBoost       | 2.511904     | **5.124343** | 1.241374     | **1.807403** | 0.993175     | **0.986231** |
 
-dapat dilihat pada tabel tersebut Random Forest unggul pada data train nya namun pada data test XGBoost unggul
+dapat dilihat pada tabel tersebut Random Forest unggul pada data train nya namun pada data test XGBoost unggul. Berdasarkan hasil evaluasi ini, dapat dilihat bahwa meskipun XGBoost unggul dari kedua algoritma yang diuji, MAE dan MSE masih memiliki error yang tinggi, berarti model ini masih memiliki banyak selisih antara nilai prediksi nya dengan aslinya. (menjawab pertanyaan kedua)
 
 ### 4. Evaluasi lain
 
@@ -124,8 +131,12 @@ Selain menggunakan metrik evaluasi diatas untuk mengukur kinerja model sebagai m
 | 4   | Sample Question Papers Practiced | 0.002449   |
 | 2   | Extracurricular Activities       | 0.002135   |
 
-fungsi feature*importances* akan menampilkan nilai kepentingan masing-masing fitur pada dataset. disini kita lihat yang paling berpengaruh ke indeks performa adalah Previous Scores, kedua Hours Studied, dan terakhir sleep hours
+fungsi feature*importances* akan menampilkan nilai kepentingan masing-masing fitur pada dataset. disini kita lihat variabel yang paling berpengaruh ke indeks performa adalah Previous Scores, kedua Hours Studied, dan terakhir sleep hours. Variabel ini lah yang menjadi faktor-faktor yang mempengaruhi performa siswa (menjawab pertanyaan pertama)
 
 Referensi
 
 [1] C. F. Djarwo, “Analisis faktor internal dan eksternal terhadap motivasi belajar kimia siswa SMA Kota Jayapura,” Jurnal Ilmiah IKIP Mataram, vol. 7, no. 1, pp. 1–7, 2020.
+
+[2] L. Taherkhani, A. Daneshvar, H. Amoozad Khalili, and M. R. Sanaei, “Analysis of the Customer Churn Prediction Project in the Hotel Industry Based on Text Mining and the Random Forest Algorithm,” Advances in Civil Engineering, vol. 2023, no. 1, p. 6029121, 2023.
+
+[3] S. Ghosal and A. Jain, “Depression and suicide risk detection on social media using fasttext embedding and xgboost classifier,” Procedia Comput Sci, vol. 218, pp. 1631–1639, 2023.

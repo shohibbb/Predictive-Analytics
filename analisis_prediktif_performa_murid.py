@@ -24,6 +24,8 @@ Data yang digunakan pada project ini adalah data terkait kebiasaan siswa yang bi
 # !kaggle datasets download nikhil7280/student-performance-multiple-linear-regression
 # !unzip student-performance-multiple-linear-regression.zip
 
+"""import library yang diperlukan untuk proyek ini"""
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -32,6 +34,8 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+
+"""import dataset dan cek 5 baris teratas"""
 
 df = pd.read_csv('/content/Student_Performance.csv')
 df.head()
@@ -75,7 +79,9 @@ for i, col in enumerate(numerical_cols, 1):
 
 plt.show()
 
-"""## Univariate Analysis
+"""data terlihat tidak memiliki data outlier
+
+## Univariate Analysis
 
 Univariate Analysis dilakukan untuk melihat distribusi satu kolom tanpa ada hubungan dengan kolom lain
 
@@ -121,7 +127,7 @@ plt.show()
 
 Menyiapkan Data untuk digunakan dalam proses pembangunan model machine learning
 
-## Standarisasi
+## Normalisasi
 
 Berikut merupakan proses standarisasi untuk data-data numerikal yang terdapat pada dataset yang digunakan selain data target.
 """
@@ -152,10 +158,14 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 """# Model Development
 
 Membangun model machine learning untuk data dengan data yang sudah disiapkan sebelumnya.
+
+menggunakan random forest
 """
 
 rf_model = RandomForestRegressor()
 rf_model.fit(X_train, y_train)
+
+"""menggunakan xgboost"""
 
 from xgboost import XGBRegressor
 xgb_model = XGBRegressor()

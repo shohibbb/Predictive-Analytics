@@ -57,7 +57,7 @@ Dari total 10000 instance data, tidak terdapat missing value maupun outlier, nam
 ## Data Preparation
 
 - Menghapus Duplicated value : sebegaimana yang telah disebutkan bahwa ada 127 data duplicate, penanganan yang dilakukan pada data duplikat tersebut adalah dihapus
-- Standarisasi: digunakan untuk menyamakan skala antar fitur dan mempercepat konvergensi model. Tindakan ini dilakukan untuk meningkatkan akurasi model dan memastikan peforma model yang konsisten.
+- Normalisasi: digunakan untuk menyamakan skala antar fitur dan mempercepat konvergensi model. Tindakan ini dilakukan untuk meningkatkan akurasi model dan memastikan peforma model yang konsisten.
 - Transformasi: Selanjutnya ada tranformasi data menggunakan label encoder untuk merubah data kategorikal yang diisi dengan nilai huruf contoh nya "yes" dan "no" menjadi angka yang setiap angka mewakilkan satu kategori. Proses ini harus diaplikasikan karena model machine learning hanya menerima input berupa angka.
 - Data Splitting: Bertujuan untuk membagi data dengan rasio tertentu yang mana sebagian akan digunakan untuk melatih/membangun model machine learning sedangkan sebagian yang lain akan digunakan untuk menguji model yang sudah dibangun.
 
